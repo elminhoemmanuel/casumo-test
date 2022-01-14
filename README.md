@@ -6,41 +6,7 @@
    A cards management web application.
 </div>
 
-<!-- TABLE OF CONTENTS -->
-
-## Table of Contents
-
-- [Table of Contents](#table-of-contents)
-- [Overview](#overview)
-  - [Built With](#built-with)
-- [Features](#features)
-- [How To Use](#how-to-use)
-
-<!-- OVERVIEW -->
-
-
-## Overview
-
-<!-- ![screenshot](/public/images/preview.png) -->
-  
-- My experience building this was quite exciting as I had the opportunity to flex my love for Redux as this helped me with managing the state of this application effectively during the various data fetching procedures.
-
-### Built With
-
-<!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
-
-- [Next.js](https://nextjs.org/)
-- [React](https://reactjs.org/)
-- [Redux](https://react-redux.js.org/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [Vercel](https://vercel.com) for deployment
-
-## Features
-
-<!-- List the features of your application or follow the template. Don't share the figma file here :) -->
-
-Some of the features I developed are?
-## How To Use
+## How To run the app
 
 <!-- Example: -->
 

@@ -11,7 +11,7 @@ const NewCard = () => {
     let types = ["mastercard", "visa"]
     let random = Math.floor(Math.random() * typesNumber)
     const [isDisabled, setIsDisabled,] = useState(true)
-    const [name, setName,] = useState("")
+    const [formError, setFormError,] = useState("")
     const [changed, setChanged,] = useState(0)
     const dispatch = useDispatch();
     const { showNew, showEdit } = useSelector((state) => state.cards);
@@ -30,11 +30,12 @@ const NewCard = () => {
         if (touched.cvc) {
             validateCVC()
         }
-        handleCardNumber(details)
+        
     }, [changed])
 
     useEffect(() => {
         if (details.name.length === 0 || details.cardNumber.length === 0 || details.expiry.length === 0 || details.cvc.length === 0) {
+            // || errors.name !== "none" || errors.cardNumber !== "none" || errors.expiry !== "none" || errors.cvc !== "none"
             setIsDisabled(true)
         } else {
             setIsDisabled(false)
@@ -83,14 +84,14 @@ const NewCard = () => {
         if (dets.cardNumber.length === 4 || dets.cardNumber.length === 9 || dets.cardNumber.length === 14) {
             setDetails({ ...dets, cardNumber: dets.cardNumber + " " })
         }
-        cardNumHelper(dets, 15);
-        cardNumHelper(dets, 10);
-        cardNumHelper(dets, 5);
+        // cardNumHelper(dets, 15);
+        // cardNumHelper(dets, 10);
+        // cardNumHelper(dets, 5);
 
         if (dets.expiry.length === 2) {
             setDetails({ ...dets, expiry: dets.expiry + "/" })
         }
-        cardExpHelper(dets, 3);
+        // cardExpHelper(dets, 3);
 
     }
 
@@ -167,7 +168,13 @@ const NewCard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addCard(details));
+        setFormError("")
+        if(errors.name !== "none" || errors.cardNumber !== "none" || errors.expiry !== "none" || errors.cvc !== "none"){
+            setFormError("Please clear all field errors to enable submission")
+        }else{
+            dispatch(addCard(details));
+        }
+        
 
     }
 
@@ -203,6 +210,7 @@ const NewCard = () => {
                                         ${errors.name === "" ? "border-casash text-casash2" : errors.name === "none" ? "border-casgreen text-casgreen" : "border-casred text-casred"} py-2 pr-3 placeholder-casash`}
                                         placeholder="John Doe"
                                         type="text"
+                                        minLength="1"
                                     />
                                     {errors.name !== "" && errors.name !== "none" && <img className='absolute top-2 right-0' src="/images/form-error.svg" alt="form error icon" />}
                                     {errors.name === "none" && <img className='absolute top-3 right-0' src="/images/form-success.svg" alt="form success icon" />}
@@ -220,6 +228,7 @@ const NewCard = () => {
                                     <input
                                         value={details.cardNumber}
                                         onChange={(e) => { handleChange(e); setChanged(changed + 1); }}
+                                        onKeyPress={(e)=>handleCardNumber(details)}
                                         name="cardNumber"
                                         className={`w-full block focus:outline-none border-b 
                                         ${errors.cardNumber === "" ? "border-casash text-casash2" : errors.cardNumber === "none" ? "border-casgreen text-casgreen" : "border-casred text-casred"} py-2 pr-3  placeholder-casash`}
@@ -242,6 +251,7 @@ const NewCard = () => {
                                     <input
                                         value={details.expiry}
                                         onChange={(e) => { handleChange(e); setChanged(changed + 1); }}
+                                        onKeyPress={(e)=>handleCardNumber(details)}
                                         name="expiry"
                                         className={`w-full block focus:outline-none border-b 
                                         ${errors.expiry === "" ? "border-casash text-casash2" : errors.expiry === "none" ? "border-casgreen text-casgreen" : "border-casred text-casred"} py-2 pr-3  placeholder-casash`}
@@ -276,6 +286,7 @@ const NewCard = () => {
                             </div>
 
                             <div className="mb-1">
+                                {formError && <p className='text-xs text-casred mb-2'>{formError}</p>}
                                 {
                                     isDisabled ?
                                         <PriBtnDisabled

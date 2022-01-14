@@ -10,8 +10,15 @@ import { toggleNew, toggleEdit } from '../redux/actions/cards'
 
 export default function Home() {
 
+    const [usedList , setUsedList] = useState()
+    const [loadList , setLoadList] = useState(true)
     const dispatch = useDispatch();
-    const { showNew, showEdit, cards } = useSelector((state) => state.cards);
+    const { showNew, showEdit, cardsList } = useSelector((state) => state.cards);
+
+    useEffect(()=>{
+        setUsedList(cardsList)
+        setLoadList(false)
+    }, [loadList,showNew])
 
     return (
         <>
@@ -29,7 +36,10 @@ export default function Home() {
                     {
                         showNew || showEdit ? "" :
                         <div>
-                            <CardsList cards={cards} />
+                            {
+                                loadList ? "Fetching..." :
+                                <CardsList cards={usedList} />
+                            }
                             <div className="mt-10">
                                 <PriBtn
                                     btnText="Add new card"
