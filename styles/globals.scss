@@ -1,0 +1,27 @@
+@font-face{font-family:"Circular-Pro";src:url("/font/lineto-circular-pro-book.woff") format('woff2'),url("/font/lineto-circular-pro-book.woff") format('woff');font-weight:400;font-style:normal}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+    font-family:"Circular-Pro",sans-serif;
+}
+
+html, body{
+    height: 100%;
+    margin:0;
+    padding:0;
+    background: #E5E5E5;
+
+}
+
+
+
+
+
+
+
+
+
