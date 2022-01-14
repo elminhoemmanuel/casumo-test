@@ -1,9 +1,11 @@
-import {  TOGGLE_NEW_MODAL, TOGGLE_EDIT_MODAL, SET_CARD } from "../types";
+import {  TOGGLE_NEW_MODAL, TOGGLE_EDIT_MODAL, SET_CARD, ADD_CARD } from "../types";
+import { dummyCards } from "../../constants/dummy"
 
 const initialState = {
   showNew:false,
   showEdit:false,
-  card:{}
+  card:{},
+  cardsList:[]
 };
 
 export const cardsReducer = (state = initialState, action) => {
@@ -23,6 +25,14 @@ export const cardsReducer = (state = initialState, action) => {
         ...state,
         card: action.payload
       };
+    case ADD_CARD:
+        console.log(action.payload)
+        console.log(state.cardsList)
+        console.log(dummyCards)
+    //   return {
+    //     ...state,
+    //     cardsList: 
+    //   };
     default:
       return state;
   }

@@ -12,6 +12,12 @@ const EditCard = () => {
     const [isDisabled, setIsDisabled,] = useState(true);
     const dispatch = useDispatch();
     const { card, showEdit } = useSelector((state) => state.cards);
+    const [firstLoad, setFirstLoad,] = useState(true)
+
+    // useEffect(() => {
+    //     setDetails({ ...details,name:"James"})
+    //     setFirstLoad(false)
+    // }, [firstLoad])
 
     return (
         <div className="w-full h-screen z-30 absolute left-0 top-0 bg-black opacity-80 ">

@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useSelector, useDispatch } from 'react-redux'
 import React, { useState, useEffect } from 'react'
 import CardsList from '../components/layout/CardsList'
-import { dummyCards } from "../constants/dummy"
 import PriBtn from '../components/base/PriBtn'
 import NewCard from '../components/layout/modals/NewCard'
 import EditCard from '../components/layout/modals/EditCard'
@@ -11,9 +10,8 @@ import { toggleNew, toggleEdit } from '../redux/actions/cards'
 
 export default function Home() {
 
-    const [cardsList, setCardsList] = useState(dummyCards);
     const dispatch = useDispatch();
-    const { showNew, showEdit } = useSelector((state) => state.cards);
+    const { showNew, showEdit, cards } = useSelector((state) => state.cards);
 
     return (
         <>
@@ -31,7 +29,7 @@ export default function Home() {
                     {
                         showNew || showEdit ? "" :
                         <div>
-                            <CardsList cards={cardsList} />
+                            <CardsList cards={cards} />
                             <div className="mt-10">
                                 <PriBtn
                                     btnText="Add new card"
