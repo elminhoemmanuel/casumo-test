@@ -15,24 +15,7 @@ const NewCard = () => {
     const { showNew, showEdit } = useSelector((state) => state.cards);
     const [details, setDetails] = useState({name:"", cardNumber:"", cvc:"", expiry:"", type:types[random]})
 
-    // const handleCardNumber = (e) =>{
-    //     let text = e.target.value
-    //     let textArr = []
-    //     for (let i = 0; i < text.length; i++) {
-    //         console.log(i)
-    //         textArr.push(text[i])
-    //         if((i+1) % 4 === 0 && i+1 !== 16){
-    //             textArr.push(" ")
-    //         }
-            
-    //     }
-    //     console.log(textArr)
-        
-    //     setDetails({
-    //         ...details,
-    //         cardNumber:textArr.join("")
-    //     })
-    // }
+    
 
     return (
         <div className="w-full h-screen z-30 absolute left-0 top-0 bg-black opacity-80 ">
