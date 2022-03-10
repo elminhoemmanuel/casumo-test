@@ -15,4 +15,5 @@ export const setCard = (card) => (dispatch) => {
 
 export const addCard = (dets) => (dispatch) => {
     dispatch({ type: ADD_CARD, payload:dets })
+    dispatch({ type: TOGGLE_NEW_MODAL })
 }
