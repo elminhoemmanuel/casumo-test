@@ -5,7 +5,7 @@ const initialState = {
   showNew:false,
   showEdit:false,
   card:{},
-  cardsList:[]
+  test:[...dummyCards]
 };
 
 export const cardsReducer = (state = initialState, action) => {
@@ -27,7 +27,7 @@ export const cardsReducer = (state = initialState, action) => {
       };
     case ADD_CARD:
         console.log(action.payload)
-        console.log(state.cardsList)
+        console.log(state.test)
         console.log(dummyCards)
     //   return {
     //     ...state,
